@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  service_data:
+    container_name: service_data
+    image: service_data
+    restart: always
+    environment:
+      APP_SERVICE_DATA_PORT: 7070
+    ports:
+      - 7070:7070
+
+  service_consumer:
+    container_name: service_consumer
+    image: service_consumer
+    restart: always
+    environment:
+      APP_SERVICE_CONSUMER_DATA_PORT: 9090
+      APP_SERVICE_DATA: service_data
+    ports:
+      - 9090:9090
